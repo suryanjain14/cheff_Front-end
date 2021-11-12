@@ -10,8 +10,8 @@ const WaitingPage = (props) => {
 
 
   const getApiData = () => {
-    fetch("http://15.206.128.2:4000/api/getRequestByid/?id="+reqid).then((resp)=> resp.json()).then((d)=>{
-      if(d.data[0].status == "Accepted"){
+    fetch("http://15.206.128.2:4000/api/getOrderDetailsByRequestId/?id="+reqid).then((resp)=> resp.json()).then((d)=>{
+      if(d.status == "success"){
           history.push("/");
           window.location.reload(); // this is very important please don't remove this line
       }

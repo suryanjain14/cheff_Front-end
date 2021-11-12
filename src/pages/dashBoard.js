@@ -7,7 +7,17 @@ import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 // import { Row, Table, Col, Button } from "react-bootstrap";
 
+
+
+
+
+
 const DashBoard = () => {
+
+     
+//  setInterval(() => {window.location.reload();}, 8000);
+
+
     const user = getUser();
     const [datas,setDatas] =  useState([]);
     const history =  useHistory();
@@ -39,8 +49,9 @@ const DashBoard = () => {
     }
     const handleOnAccept = async (event) =>
     {
+        console.log("handleOnAcceot Called : ",event);
         let body = {
-            requestId: event.id,
+            request_id: event.id,
             user_id:event.userid,
             chef_id:event.chefid,
             dish_id:event.dishid,
@@ -58,6 +69,7 @@ const DashBoard = () => {
         // localStorage.clear();
         // sessionStorage.clear();
         history.push("/dashBoard");
+        window.location.reload();
         return 
     }
 
@@ -65,12 +77,12 @@ const DashBoard = () => {
     {
         console.log("handleOnReject Called : ",event);
         let body = {
-            requestId: event.id,
+            request_id: event.id,
             user_id:event.userid,
             chef_id:event.chefid,
             dish_id:event.dishid,
             charges:event.charges,
-            status:"Accepted"
+            status:"Rejected"
         }
         console.log("Body : ",body);
         await fetch("http://15.206.128.2:4000/api/addOrder", {
@@ -83,6 +95,7 @@ const DashBoard = () => {
         // localStorage.clear();
         // sessionStorage.clear();
         history.push("/dashBoard");
+        window.location.reload();
         return 
     }
 
@@ -144,8 +157,11 @@ const DashBoard = () => {
                 <h4 className="des">{item?.dishname}</h4>
                 </div>
                  <div className="btnGroup">
-                 <Button id="acceptButton" type="submit" onClick={handleOnAccept}>Accept</Button> 
-                 <Button id="rejectButton" type="submit" onClick={handleOnReject}>Reject</Button>
+
+                 <Button id="acceptButton" type="submit" onClick={()=>handleOnAccept(item)} >Accept</Button> 
+                 
+                 
+                 <Button id="rejectButton" type="submit" onClick={()=>handleOnReject(item)} >Reject</Button>
                  </div>
                 </div>
                 <hr/>
