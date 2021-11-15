@@ -16,6 +16,10 @@ const Order = (props) => {
     const[lati,setLati] = useState();
     const[longi,setLongi] = useState();
     const [dish,setDish] =  useState([]);
+    const chefLati = 25.359080098326006;
+    const chefLongi = 82.9809349959941;
+    const userLoc = {lat: lati, lng: longi};
+    const chefLoc = {lat: chefLati, lng: chefLongi};
 
 
     const getDishbyIDApiData = () => {
@@ -26,8 +30,6 @@ const Order = (props) => {
         console.log(err);
       })
     }
-
-
     useEffect(() => {
         getDishbyIDApiData();
     }, [])
@@ -46,12 +48,50 @@ const Order = (props) => {
     {
 
       center: { lat: lati, lng: longi },
-      zoom: 1,
+      zoom: 10,    
     },
   );
 
   console.log(map); // instance of created Map object (https://developers.google.com/maps/documentation/javascript/reference/map)
   console.log(google);
+console.log(chefLati,chefLongi);
+// console.log(lati,longi);
+
+if (map) {
+  // execute when map object is ready
+  new google.maps.Marker({ position: chefLoc, map });
+}
+
+if (map) {
+  // execute when map object is ready
+  new google.maps.Marker({ position: userLoc, map });
+
+}
+
+if (map){
+  new google.maps.Polyline({
+    path: [
+      chefLoc,
+      userLoc,
+    ],
+    geodesic: true,
+    strokeColor: "#FF0000",
+    strokeOpacity: 1.0,
+    strokeWeight: 2,
+    map
+  });
+}
+
+if (map){
+  var origin = {lat: chefLati, lng: chefLongi};
+      var destination = {lat: lati,lng: longi};
+      var travel_mode = "DRIVING";
+      var directionsDisplay = new google.maps.DirectionsRenderer({'draggable': false});
+      var directionsService = new google.maps.DirectionsService();
+     displayRoute(travel_mode, origin, destination, directionsService, directionsDisplay);
+      calculateDistance(travel_mode, origin, destination);
+}
+
 
     const mapStyles = {
         width: "100%",
@@ -70,5 +110,43 @@ const Order = (props) => {
 
         </div>
     )
+
+    // const getDistance = () => {
+    //   // e.preventDefault();
+      
+    // }
+
+    function calculateDistance(travel_mode, origin, destination) {
+
+      var DistanceMatrixService = new google.maps.DistanceMatrixService();
+      DistanceMatrixService.getDistanceMatrix(
+          {
+              origins: [origin],
+              destinations: [destination],
+              travelMode: google.maps.TravelMode[travel_mode],
+              // unitSystem: google.maps.UnitSystem.IMPERIAL, // miles and feet.
+              unitSystem: google.maps.UnitSystem.metric, // kilometers and meters.
+              avoidHighways: false,
+              avoidTolls: false
+          });
+  }
+
+  function displayRoute(travel_mode, origin, destination, directionsService, directionsDisplay) {
+    directionsService.route({
+        origin: origin,
+        destination: destination,
+        travelMode: google.maps.TravelMode[travel_mode],
+        avoidTolls: true
+    }, function (response, status) {
+        if (status === 'OK') {
+            directionsDisplay.setMap(map);
+            directionsDisplay.setDirections(response);
+        } else {
+            directionsDisplay.setMap(null);
+            directionsDisplay.setDirections(null);
+            alert('Could not display directions due to: ' + status);
+        }
+    });
+  }
 }
 export default Order
