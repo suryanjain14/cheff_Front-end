@@ -16,6 +16,7 @@ const OrderConfirm = (props) => {
     const cid = props.match.params.cid;
     const did = props.match.params.did;
     const price = props.match.params.price;
+    const cname = props.match.params.cname;
     // console.log(cid, uid,did);
     // console.log(props);
     const[lati,setLati] = useState();
@@ -101,7 +102,24 @@ const OrderConfirm = (props) => {
               return (
                 <div id="orderConfirm" className="orderConfirmSection container">
                   <img className = "confirmImage" src={item.picture} alt={item.name} />
-                  <p style={{paddingTop:"25px"}}>Price:={price} idhar kuch kuch daal den </p>
+                  <table>
+                  <h1> Order Details</h1>
+                    <tr>
+                      <td>Dish</td>
+                      <td>{item.name}</td>                    
+                    </tr>
+                    <tr>
+                      <td>Price</td>
+                      <td>₹{price}</td>
+                    </tr>
+                    <tr>
+                      <td>Chef </td>
+                      <td>{cname}</td>                    
+                    </tr>
+                  </table>
+
+                  {/* <p style={{paddingTop:"25px"}}>
+                    Price:={price} idhar kuch kuch daal den </p> */}
                   <Button className="btns" type="button" onClick={handelsubmit}>Confirm {item.name.toString()}</Button>
                 </div>
 

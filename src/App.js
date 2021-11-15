@@ -24,7 +24,7 @@ function App() {
       <CustomNavbar/>
       <Route exact path="/" component={HomePage}/>
         <Route exact path="/cheffList/:id" component={CheffList}/>
-        <Route exact path="/orderConfirm/:uid/:cid/:did/:price" component={OrderConfirm}/>
+        <Route exact path="/orderConfirm/:uid/:cid/:did/:price/:cname" component={OrderConfirm}/>
         <Route exact path="/signUp" component={RegisterPage}/>
         
       <Route exact path="/login" component={SignInPage}/>

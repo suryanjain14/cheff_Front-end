@@ -48,7 +48,7 @@ const CheffList = (props) => {
         <Row className="content-row">
         {
              datas?.data?.map((item,index)=>{
-                 return  <Link to={{pathname:"/orderConfirm/"+localStorage.getItem("id")+"/"+item.id+"/"+props.match.params.id+"/"+item.charges,state:props.location.state}} style={{textDecoration:"none",color:"black"}}>
+                 return  <Link to={{pathname:"/orderConfirm/"+localStorage.getItem("id")+"/"+item.id+"/"+props.match.params.id+"/"+item.charges+"/"+item.name,state:props.location.state}} style={{textDecoration:"none",color:"black"}}>
                   
                  <div className="section"> 
                  <Col className="col" lg={3} key={index}>{item.name}</Col>

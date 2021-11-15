@@ -1,6 +1,6 @@
 import Button from '@restart/ui/esm/Button';
 import React,{useState,useEffect} from 'react'
-import "../style/orderConfirm.css"
+import "../style/order.css"
 import { useGoogleMaps } from "react-hook-google-maps";
 
 
@@ -65,7 +65,7 @@ const Order = (props) => {
             <p style={{paddingTop:"25px"}}>{data?.title}</p>
               </div>
               <div ref={ref} style={{ width: 400, height: 300 }} />
-            <Button className="btns">Confirm</Button>
+            <Button className="btns">Time</Button>
         </div>
 
         </div>
