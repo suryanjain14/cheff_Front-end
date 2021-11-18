@@ -30,7 +30,7 @@ function App() {
       <Route exact path="/login" component={SignInPage}/>
         <Route exact path="/selectDishes" component={SelectDishes}/>
         <Route exact path="/waitingPage" component={WaitingPage}/>
-        <Route exact path="/order" component={Order}/>
+        <Route exact path="/order/:oid" component={Order}/>
         
 
 
