@@ -156,13 +156,10 @@ const DashBoard = () => {
                 <img className="image" src={item?.dishpicture} alt={item?.dishname} />
                 <h4 className="des">{item?.dishname}</h4>
                 </div>
-                 <div className="btnGroup">
-
-                 <Button id="acceptButton" type="submit" onClick={()=>handleOnAccept(item)} >Accept</Button> 
-                 
-                 
-                 <Button id="rejectButton" type="submit" onClick={()=>handleOnReject(item)} >Reject</Button>
-                 </div>
+                <div className="btnGroup">
+                    <Button id="acceptButton" type="submit" onClick={()=>handleOnAccept(item)} >Accept</Button> 
+                    <Button id="rejectButton" type="submit" onClick={()=>handleOnReject(item)} >Reject</Button>
+                </div>
                 </div>
                 <hr/>
                 </>
@@ -182,11 +179,15 @@ const DashBoard = () => {
                 : acceptedOrders?.map((item)=>{
                     return (
                         <>
-                    <div className="listSection">
-                    <img className="image" src={item?.dishpicture} alt={item?.dishname} />
-                    <h4 className="des" /*style={{textDecoration:"none"}}*/>{item?.dishname}</h4>
-                    
-                    </div>
+                    <Link to={{pathname:`/order/${item?.id}`}} style={{textDecoration:"none",color:"black"}}>
+                        <div className="listSection">
+                            <img className="image" src={item?.dishpicture} alt={item?.dishname} />
+                            <h4 className="des" /*style={{textDecoration:"none"}}*/>{item?.dishname}</h4>
+                            <div className="btnGroup">
+                                <Button id="status" type="submit" style={{float:'right'}}>{item?.status}</Button>
+                            </div>
+                        </div>
+                    </Link>
                     <hr/>
                     </>
                     );
