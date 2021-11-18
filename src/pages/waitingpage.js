@@ -12,7 +12,7 @@ const WaitingPage = (props) => {
   const getApiData = () => {
     fetch("http://15.206.128.2:4000/api/getOrderDetailsByRequestId/?id="+reqid).then((resp)=> resp.json()).then((d)=>{
       if(d.status == "success"){
-          history.push("/");
+          history.push("/order/"+d.data[0].id);
           window.location.reload(); // this is very important please don't remove this line
       }
     }).catch((err)=>{
