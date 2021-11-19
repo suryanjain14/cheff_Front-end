@@ -28,7 +28,7 @@ const Order = (props) => {
     const getDishbyIDApiData = (dish_id) => {
       fetch(`${process.env.REACT_APP_EC2_HOST}/getDishByID?id=`+(dish_id)).then((resp)=> resp.json()).then((d)=>{
         setDish(d);
-        console.log(`${process.env.REACT_APP_EC2_HOST}/getDishByID?id=`+(dish_id),d)
+        // console.log(`${process.env.REACT_APP_EC2_HOST}/getDishByID?id=`+(dish_id),d)
       }).catch((err)=>{
         console.log(err);
       })
@@ -37,7 +37,7 @@ const Order = (props) => {
     const getOrderbyIDApiData = () => {
       fetch(`${process.env.REACT_APP_EC2_HOST}/getOrderDetailsById?id=`+(order_id)).then((resp)=> resp.json()).then((d)=>{
         setOrder(d);
-        console.log("order data",d)
+        // console.log("order data",d)
         getDishbyIDApiData(d.data?.[0].dish_id)
       }).catch((err)=>{
         console.log(err);
@@ -54,8 +54,8 @@ const Order = (props) => {
     }, [])
 
     window.navigator.geolocation.getCurrentPosition(function(position){
-      console.log("lati",position.coords.latitude);
-      console.log("langi",position.coords.longitude);
+      // console.log("lati",position.coords.latitude);
+      // console.log("langi",position.coords.longitude);
       setLati(position.coords.latitude);
       setLongi(position.coords.longitude);
     });
@@ -70,9 +70,9 @@ const Order = (props) => {
     },
   );
 
-  console.log(map); // instance of created Map object (https://developers.google.com/maps/documentation/javascript/reference/map)
-  console.log(google);
-console.log(chefLati,chefLongi);
+//   console.log(map); // instance of created Map object (https://developers.google.com/maps/documentation/javascript/reference/map)
+//   console.log(google);
+// console.log(chefLati,chefLongi);
 // console.log(lati,longi);
 
 

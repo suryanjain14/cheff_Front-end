@@ -19,7 +19,7 @@ const SelectDishes = (props) => {
     const getApiData = async() => {
         await fetch(`${process.env.REACT_APP_EC2_HOST}/getDish/`).then((resp)=> resp.json()).then((d)=>{
         setDatas(d);
-        console.log("data from fetch API",d)
+        // console.log("data from fetch API",d)
         }).catch((err)=>{
         console.log(err);
         })
@@ -55,7 +55,7 @@ const SelectDishes = (props) => {
         location:location
         });
 
-        console.log("now here is result again", tokens);
+        // console.log("now here is result again", tokens);
         if(tokens.status === "success" && tokens.data.role === "Chef"){
             localStorage.setItem('access_token',tokens?.data?.access_token)
             localStorage.setItem('name',tokens?.data?.name);
@@ -73,7 +73,7 @@ const SelectDishes = (props) => {
     };
     
     const register = async (credential) => {
-      console.log("Credentials : ",credential);
+      // console.log("Credentials : ",credential);
         return fetch(`${process.env.REACT_APP_EC2_HOST}/signUp`, {
             method: "POST",
             headers: {

@@ -7,14 +7,14 @@ const CustomNavbar = () => {
 
   const [changeData,setChangeData] = useState();
 
-  console.log("selected data is here",changeData);
+  // console.log("selected data is here",changeData);
   localStorage.setItem('city',changeData);
   let userName = localStorage.getItem('name');
   let userToken = localStorage.getItem('access_token');
 
-  console.log("yes ok here",userToken);
+  // console.log("yes ok here",userToken);
   
-  console.log("yes ok here is",userName);
+  // console.log("yes ok here is",userName);
 
   return (
     <div>

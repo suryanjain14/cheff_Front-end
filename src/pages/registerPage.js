@@ -9,17 +9,17 @@ import { setUserSession } from "./comman";
 const RegisterPage = (props) => {
   let isChef = false;
   
-  console.log("register value",props);
+  // console.log("register value",props);
 
   const handleOnChange = (event) => 
   {
     setRole(event.target.value);
-    console.log("now", event.target.value);
+    // console.log("now", event.target.value);
     // console.log("isChef",isChef);
     let charge = document.getElementById('charge');
     if(event.target.value === "Chef")
     {
-      console.log("Charge",charge);
+      // console.log("Charge",charge);
       charge.style.display = "block"
     }
     else{
@@ -28,7 +28,7 @@ const RegisterPage = (props) => {
   }
   const history = useHistory();
   
-  console.log("location data is here",props.location.state.currentLocation);
+  // console.log("location data is here",props.location.state.currentLocation);
   // const location = props.location.state.currentLocation;
   const [name, setname] = useState("");
   const [email, setEmail] = useState("");
@@ -70,7 +70,7 @@ const RegisterPage = (props) => {
         charges
       });
 
-      console.log("now here is result again", tokens);
+      // console.log("now here is result again", tokens);
       if(tokens.status === "success" && tokens.data.role === "Chef"){
         setUserSession(tokens.data.access_token,tokens.data);
         history.push("/selectDishes");

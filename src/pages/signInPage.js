@@ -23,15 +23,15 @@ const handleSubmitForm = async (e) => {
       email,
       password,
     });
-    console.log("id here",tokens);
+    // console.log("id here",tokens);
     if(tokens.status === "success" && tokens.data.role === "Chef"){
       localStorage.setItem('access_token',tokens?.data?.access_token)
       localStorage.setItem('name',tokens?.data?.name);
       localStorage.setItem('id',tokens?.data?.id);
       let okToken = localStorage.getItem('access_token');
-      console.log("final test",okToken);
+      // console.log("final test",okToken);
       let result = localStorage.getItem('name');
-      console.log("final data is",result);
+      // console.log("final data is",result);
       history.push("/dashBoard");
     }
     else if(tokens.status === "success" && tokens.data.role === "Customer"){
@@ -39,9 +39,9 @@ const handleSubmitForm = async (e) => {
       localStorage.setItem('name',tokens?.data?.name);
       localStorage.setItem('id',tokens?.data?.id);
       let okToken = localStorage.getItem('access_token');
-      console.log("final test",okToken);
+      // console.log("final test",okToken);
       let result = localStorage.getItem('name');
-      console.log("final data is",result);
+      // console.log("final data is",result);
       history.push("/");
     }
     else{

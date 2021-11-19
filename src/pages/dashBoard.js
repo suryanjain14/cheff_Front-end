@@ -59,7 +59,7 @@ const DashBoard = () => {
             charges:event.charges,
             status:"Accepted"
         }
-        console.log("Body : ",body);
+        // console.log("Body : ",body);
         await fetch(`${process.env.REACT_APP_EC2_HOST}/addOrder`, {
             method: "POST",
             headers: {
@@ -85,7 +85,7 @@ const DashBoard = () => {
             charges:event.charges,
             status:"Rejected"
         }
-        console.log("Body : ",body);
+        // console.log("Body : ",body);
         await fetch(`${process.env.REACT_APP_EC2_HOST}/addOrder`, {
             method: "POST",
             headers: {
@@ -130,7 +130,7 @@ const DashBoard = () => {
           "lat":lat.toString(),
           "lan":lan.toString(),
         }
-        console.log("Location" ,credential);
+        // console.log("Location" ,credential);
         return fetch(`${process.env.REACT_APP_EC2_HOST}/updateLocation`, {
           method: "POST",
           headers: {
@@ -146,14 +146,14 @@ const DashBoard = () => {
       });
 
 
-    console.log("New Requests : ",newRequests);
-    console.log("Past Orders : ",pastOrders);
+    // console.log("New Requests : ",newRequests);
+    // console.log("Past Orders : ",pastOrders);
     let acceptedOrders = pastOrders?.data?.filter(item=> item.status === "Accepted")
     let rejectedOrders = pastOrders?.data?.filter(item=> item.status === "Rejected")
-    console.log("Accepted Orders",acceptedOrders);
-    console.log("Rejected Orders",rejectedOrders);
+    // console.log("Accepted Orders",acceptedOrders);
+    // console.log("Rejected Orders",rejectedOrders);
     let userName = localStorage.getItem('name');
-    console.log("user data",user);
+    // console.log("user data",user);
     return (
         <div className="dashBoardSection" id="dashBoard">
             <div className="headerSection">

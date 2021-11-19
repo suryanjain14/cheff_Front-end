@@ -34,9 +34,9 @@ const OrderConfirm = (props) => {
       
 
 
-      console.log("now here is result again", tokens);
+      // console.log("now here is result again", tokens);
       if(tokens.status === "success"){
-          console.log(tokens.data.id);
+          // console.log(tokens.data.id);
           localStorage.setItem("RequestID",tokens.data.id);
          return history.push("/waitingPage");
       }
@@ -45,7 +45,7 @@ const OrderConfirm = (props) => {
   };
   
   const register = async (credential) => {
-    console.log("Credentials : ",credential);
+    // console.log("Credentials : ",credential);
 
       return fetch(`${process.env.REACT_APP_EC2_HOST}/requestAdd`, {
           method: "POST",
@@ -71,7 +71,7 @@ const OrderConfirm = (props) => {
         "lat":lat.toString(),
         "lan":lan.toString(),
       }
-      console.log(credential);
+      // console.log(credential);
       return fetch(`${process.env.REACT_APP_EC2_HOST}/updateLocation`, {
         method: "POST",
         headers: {
@@ -83,8 +83,8 @@ const OrderConfirm = (props) => {
     }
 
     window.navigator.geolocation.getCurrentPosition(function(position){
-      console.log("lati",position.coords.latitude);
-      console.log("langi",position.coords.longitude);
+      // console.log("lati",position.coords.latitude);
+      // console.log("langi",position.coords.longitude);
       setUserLocationApi(position.coords.latitude,position.coords.longitude);
     });
 

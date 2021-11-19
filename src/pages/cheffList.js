@@ -17,7 +17,7 @@ const CheffList = (props) => {
     // console.log(`${process.env.REACT_APP_EC2_HOST}/getChefByDishAndLocation?dishId=${props.match.params.id}&location=${city}`);
     fetch(`${process.env.REACT_APP_EC2_HOST}/getChefByDishAndLocation?dishId=${props.match.params.id}&location=${city}`).then((resp)=> resp.json()).then((d)=>{
       setDatas(d);
-      console.log(d);
+      // console.log(d);
     }).catch((err)=>{
       console.log(err);
     })
@@ -34,7 +34,6 @@ const CheffList = (props) => {
 
 
 
-  console.log("hello boys", props);
 
 // if (true){
   
