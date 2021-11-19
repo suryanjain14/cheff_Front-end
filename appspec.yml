@@ -1,0 +1,20 @@
+
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ec2-user
+    
+hooks:
+  BeforeInstall:
+    - location: beforeinstal.sh
+      timeout: 100 
+      
+   
+  AfterInstall:
+    - location: afterinstall.sh
+      timeout: 100 
+      
+      
+  
+  
