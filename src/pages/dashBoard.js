@@ -19,6 +19,7 @@ const DashBoard = () => {
 
 
     const user = getUser();
+    const uid = localStorage.getItem('id')
     const [datas,setDatas] =  useState([]);
     const history =  useHistory();
     const [currentIndex,setCurrentIndex] = useState(0);
@@ -122,6 +123,29 @@ const DashBoard = () => {
             setPastOrders(data);
         })
     }
+
+    const setUserLocationApi = (lat,lan) => {
+        const credential ={
+          "id":uid,
+          "lat":lat.toString(),
+          "lan":lan.toString(),
+        }
+        console.log("Location" ,credential);
+        return fetch("http://15.206.128.2:4000/api/updateLocation", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(credential),
+        }).then((data) => data.json());
+      
+      }
+  
+      window.navigator.geolocation.getCurrentPosition(function(position){
+        setUserLocationApi(position.coords.latitude,position.coords.longitude);
+      });
+
+
     console.log("New Requests : ",newRequests);
     console.log("Past Orders : ",pastOrders);
     let acceptedOrders = pastOrders?.data?.filter(item=> item.status === "Accepted")
