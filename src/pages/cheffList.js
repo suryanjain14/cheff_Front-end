@@ -35,6 +35,56 @@ const CheffList = (props) => {
 
 
   console.log("hello boys", props);
+
+if (true){
+  
+  var origin = {lat: chefLati, lng: chefLongi};
+  var destination = {lat: lati,lng: longi};
+  var travel_mode = "DRIVING";
+  calculateDistance(travel_mode, origin, destination);
+
+}
+  
+
+
+  function calculateDistance(travel_mode, origin, destination) {
+
+    var DistanceMatrixService = new google.maps.DistanceMatrixService();
+    DistanceMatrixService.getDistanceMatrix(
+        {
+            origins: [origin],
+            destinations: [destination],
+            travelMode: google.maps.TravelMode[travel_mode],
+            // unitSystem: google.maps.UnitSystem.IMPERIAL, // miles and feet.
+            unitSystem: google.maps.UnitSystem.metric, // kilometers and meters.
+            avoidHighways: false,
+            avoidTolls: false
+        }, matrixResults);
+  }
+  
+  function matrixResults(response, status){
+    if (status == 'OK') {
+        var origins = response.originAddresses;
+        var destinations = response.destinationAddresses;
+  
+        for (var i = 0; i < origins.length; i++) {
+            var results = response.rows[i].elements;
+            for (var j = 0; j < results.length; j++) {
+                var element = results[j];
+                var distance = element.distance.text;
+                var duration = element.duration.text;
+                var from = origins[i];
+                var to = destinations[j];
+            }
+        }
+    }
+    // console.log(distance);
+    // console.log(duration);
+    // console.log(from);
+    // console.log(to);
+  }
+
+
   return (
     <div id="/cheffList">
 
