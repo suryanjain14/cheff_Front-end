@@ -96,7 +96,7 @@ if (map){
   var origin = {lat: chefLati, lng: chefLongi};
   var destination = {lat: lati,lng: longi};
   var travel_mode = "DRIVING";
-  var directionsDisplay = new google.maps.DirectionsRenderer({'draggable': false});
+  var directionsDisplay = new google.maps.DirectionsRenderer({'draggable': true});
   var directionsService = new google.maps.DirectionsService();
   displayRoute(travel_mode, origin, destination, directionsService, directionsDisplay);
   calculateDistance(travel_mode, origin, destination);
