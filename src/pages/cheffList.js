@@ -14,8 +14,8 @@ const CheffList = (props) => {
     // console.log("Props : ",props);
     let city = localStorage.getItem('city');
     // console.log("City : ",city);
-    // console.log(`http://15.206.128.2:4000/api/getChefByDishAndLocation?dishId=${props.match.params.id}&location=${city}`);
-    fetch(`http://15.206.128.2:4000/api/getChefByDishAndLocation?dishId=${props.match.params.id}&location=${city}`).then((resp)=> resp.json()).then((d)=>{
+    // console.log(`${process.env.REACT_APP_EC2_HOST}/getChefByDishAndLocation?dishId=${props.match.params.id}&location=${city}`);
+    fetch(`${process.env.REACT_APP_EC2_HOST}/getChefByDishAndLocation?dishId=${props.match.params.id}&location=${city}`).then((resp)=> resp.json()).then((d)=>{
       setDatas(d);
       console.log(d);
     }).catch((err)=>{
@@ -36,53 +36,53 @@ const CheffList = (props) => {
 
   console.log("hello boys", props);
 
-if (true){
+// if (true){
   
-  var origin = {lat: chefLati, lng: chefLongi};
-  var destination = {lat: lati,lng: longi};
-  var travel_mode = "DRIVING";
-  calculateDistance(travel_mode, origin, destination);
+//   var origin = {lat: chefLati, lng: chefLongi};
+//   var destination = {lat: lati,lng: longi};
+//   var travel_mode = "DRIVING";
+//   calculateDistance(travel_mode, origin, destination);
 
-}
+// }
   
 
 
-  function calculateDistance(travel_mode, origin, destination) {
+//   function calculateDistance(travel_mode, origin, destination) {
 
-    var DistanceMatrixService = new google.maps.DistanceMatrixService();
-    DistanceMatrixService.getDistanceMatrix(
-        {
-            origins: [origin],
-            destinations: [destination],
-            travelMode: google.maps.TravelMode[travel_mode],
-            // unitSystem: google.maps.UnitSystem.IMPERIAL, // miles and feet.
-            unitSystem: google.maps.UnitSystem.metric, // kilometers and meters.
-            avoidHighways: false,
-            avoidTolls: false
-        }, matrixResults);
-  }
+//     var DistanceMatrixService = new google.maps.DistanceMatrixService();
+//     DistanceMatrixService.getDistanceMatrix(
+//         {
+//             origins: [origin],
+//             destinations: [destination],
+//             travelMode: google.maps.TravelMode[travel_mode],
+//             // unitSystem: google.maps.UnitSystem.IMPERIAL, // miles and feet.
+//             unitSystem: google.maps.UnitSystem.metric, // kilometers and meters.
+//             avoidHighways: false,
+//             avoidTolls: false
+//         }, matrixResults);
+//   }
   
-  function matrixResults(response, status){
-    if (status == 'OK') {
-        var origins = response.originAddresses;
-        var destinations = response.destinationAddresses;
+//   function matrixResults(response, status){
+//     if (status == 'OK') {
+//         var origins = response.originAddresses;
+//         var destinations = response.destinationAddresses;
   
-        for (var i = 0; i < origins.length; i++) {
-            var results = response.rows[i].elements;
-            for (var j = 0; j < results.length; j++) {
-                var element = results[j];
-                var distance = element.distance.text;
-                var duration = element.duration.text;
-                var from = origins[i];
-                var to = destinations[j];
-            }
-        }
-    }
-    // console.log(distance);
-    // console.log(duration);
-    // console.log(from);
-    // console.log(to);
-  }
+//         for (var i = 0; i < origins.length; i++) {
+//             var results = response.rows[i].elements;
+//             for (var j = 0; j < results.length; j++) {
+//                 var element = results[j];
+//                 var distance = element.distance.text;
+//                 var duration = element.duration.text;
+//                 var from = origins[i];
+//                 var to = destinations[j];
+//             }
+//         }
+//     }
+//     // console.log(distance);
+//     // console.log(duration);
+//     // console.log(from);
+//     // console.log(to);
+//   }
 
 
   return (

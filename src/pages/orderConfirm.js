@@ -47,7 +47,7 @@ const OrderConfirm = (props) => {
   const register = async (credential) => {
     console.log("Credentials : ",credential);
 
-      return fetch("http://15.206.128.2:4000/api/requestAdd", {
+      return fetch(`${process.env.REACT_APP_EC2_HOST}/requestAdd`, {
           method: "POST",
           headers: {
               "Content-Type": "application/json",
@@ -58,7 +58,7 @@ const OrderConfirm = (props) => {
   };
 
     const getDishbyIDApiData = async () => {
-      return await fetch("http://15.206.128.2:4000/api/getDishByID?id="+did.toString()).then((resp)=> resp.json()).then((d)=>{
+      return await fetch(`${process.env.REACT_APP_EC2_HOST}/getDishByID?id=`+did.toString()).then((resp)=> resp.json()).then((d)=>{
         setDish(d);
       }).catch((err)=>{
         console.log(err);
@@ -72,7 +72,7 @@ const OrderConfirm = (props) => {
         "lan":lan.toString(),
       }
       console.log(credential);
-      return fetch("http://15.206.128.2:4000/api/updateLocation", {
+      return fetch(`${process.env.REACT_APP_EC2_HOST}/updateLocation`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

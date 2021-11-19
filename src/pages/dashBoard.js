@@ -36,7 +36,7 @@ const DashBoard = () => {
         console.log("handleLogout() called");
         const ID = localStorage.getItem('id');
         
-        await fetch("http://15.206.128.2:4000/api/signOut", {
+        await fetch(`${process.env.REACT_APP_EC2_HOST}/signOut`, {
             method: "POST",
             headers: {
             "Content-Type": "application/json",
@@ -60,7 +60,7 @@ const DashBoard = () => {
             status:"Accepted"
         }
         console.log("Body : ",body);
-        await fetch("http://15.206.128.2:4000/api/addOrder", {
+        await fetch(`${process.env.REACT_APP_EC2_HOST}/addOrder`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -86,7 +86,7 @@ const DashBoard = () => {
             status:"Rejected"
         }
         console.log("Body : ",body);
-        await fetch("http://15.206.128.2:4000/api/addOrder", {
+        await fetch(`${process.env.REACT_APP_EC2_HOST}/addOrder`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -102,7 +102,7 @@ const DashBoard = () => {
 
     const requestNewData= async() =>
     {
-        return await fetch (`http://15.206.128.2:4000/api/getRequestsByChefId?id=${localStorage.getItem('id').toString()}`,{
+        return await fetch (`${process.env.REACT_APP_EC2_HOST}/getRequestsByChefId?id=${localStorage.getItem('id').toString()}`,{
             headers: {
                 "Content-Type": "application/json",
             }
@@ -114,7 +114,7 @@ const DashBoard = () => {
     
     const chefOrders = async()=>
     {
-        return await fetch (`http://15.206.128.2:4000/api/getOrdersByChefId?id=${localStorage.getItem('id').toString()}`,{
+        return await fetch (`${process.env.REACT_APP_EC2_HOST}/getOrdersByChefId?id=${localStorage.getItem('id').toString()}`,{
             headers: {
                 "Content-Type": "application/json",
             }
@@ -131,7 +131,7 @@ const DashBoard = () => {
           "lan":lan.toString(),
         }
         console.log("Location" ,credential);
-        return fetch("http://15.206.128.2:4000/api/updateLocation", {
+        return fetch(`${process.env.REACT_APP_EC2_HOST}/updateLocation`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

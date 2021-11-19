@@ -91,7 +91,7 @@ const RegisterPage = (props) => {
   };
 
   const register = async (credential) => {
-    return fetch("http://15.206.128.2:4000/api/signUp", {
+    return fetch(`${process.env.REACT_APP_EC2_HOST}/signUp`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

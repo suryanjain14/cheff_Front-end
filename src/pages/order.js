@@ -26,16 +26,16 @@ const Order = (props) => {
 
     
     const getDishbyIDApiData = (dish_id) => {
-      fetch("http://15.206.128.2:4000/api/getDishByID?id="+(dish_id)).then((resp)=> resp.json()).then((d)=>{
+      fetch(`${process.env.REACT_APP_EC2_HOST}/getDishByID?id=`+(dish_id)).then((resp)=> resp.json()).then((d)=>{
         setDish(d);
-        console.log("http://15.206.128.2:4000/api/getDishByID?id="+(dish_id),d)
+        console.log(`${process.env.REACT_APP_EC2_HOST}/getDishByID?id=`+(dish_id),d)
       }).catch((err)=>{
         console.log(err);
       })
     }
 
     const getOrderbyIDApiData = () => {
-      fetch("http://15.206.128.2:4000/api/getOrderDetailsById?id="+(order_id)).then((resp)=> resp.json()).then((d)=>{
+      fetch(`${process.env.REACT_APP_EC2_HOST}/getOrderDetailsById?id=`+(order_id)).then((resp)=> resp.json()).then((d)=>{
         setOrder(d);
         console.log("order data",d)
         getDishbyIDApiData(d.data?.[0].dish_id)

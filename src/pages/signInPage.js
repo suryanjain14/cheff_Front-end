@@ -53,7 +53,7 @@ const handleSubmitForm = async (e) => {
 };
 
 const register = async (credential) => {
-  return fetch("http://15.206.128.2:4000/api/signIn", {
+  return fetch(`${process.env.REACT_APP_EC2_HOST}/signIn`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -17,7 +17,7 @@ const SelectDishes = (props) => {
     const [datas,setDatas] =  useState([]);
     const [dishes, setDishes] = useState([]);
     const getApiData = async() => {
-        await fetch("http://15.206.128.2:4000/api/getDish/").then((resp)=> resp.json()).then((d)=>{
+        await fetch(`${process.env.REACT_APP_EC2_HOST}/getDish/`).then((resp)=> resp.json()).then((d)=>{
         setDatas(d);
         console.log("data from fetch API",d)
         }).catch((err)=>{
@@ -74,7 +74,7 @@ const SelectDishes = (props) => {
     
     const register = async (credential) => {
       console.log("Credentials : ",credential);
-        return fetch("http://15.206.128.2:4000/api/signUp", {
+        return fetch(`${process.env.REACT_APP_EC2_HOST}/signUp`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

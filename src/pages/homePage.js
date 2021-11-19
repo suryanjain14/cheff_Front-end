@@ -5,11 +5,12 @@ import { Link } from 'react-router-dom'
 import * as commanData from "./comman";
 
 const HomePage = () => {
-    
+  const BASE_URL = process.env.REACT_APP_EC2_HOST;
+  console.log("Base URL : ",BASE_URL);
   localStorage.setItem('city',"Mumbai");
   const [datas,setDatas] =  useState([]);
   const getApiData = () => {
-    fetch("http://15.206.128.2:4000/api/getDish/").then((resp)=> resp.json()).then((d)=>{
+    fetch(`${process.env.REACT_APP_EC2_HOST}/getDish/`).then((resp)=> resp.json()).then((d)=>{
       setDatas(d);
       console.log(d)
     }).catch((err)=>{
