@@ -3,9 +3,9 @@ import React,{useState,useEffect} from 'react'
 import "../style/order.css"
 import { useGoogleMaps } from "react-hook-google-maps";
 
-var time="Calculating time"
+var time="Calculating"
 
-function calculateDistance(travel_mode, origin, destination,ref, map, google) {
+function calculateDistance(travel_mode, origin, destination, google) {
   console.log("CalulateDistance")
   var DistanceMatrixService = new google.maps.DistanceMatrixService();
   DistanceMatrixService.getDistanceMatrix(
@@ -22,18 +22,12 @@ function calculateDistance(travel_mode, origin, destination,ref, map, google) {
 function matrixResults(response, status){
   console.log("MatrixResult")
   if (status === 'OK') {
-      var origins = response.originAddresses;
-      var destinations = response.destinationAddresses;
+    console.log("response",response);
       time=response.rows[0].elements[0].duration.text
   }
-
-  // console.log(distance);
-  // console.log(duration);
-  // console.log(from); 
-  // console.log(to); 
 }
 
-function displayRoute(travel_mode, origin, destination, directionsService, directionsDisplay,ref, map, google) {
+function displayRoute(travel_mode, origin, destination, directionsService, directionsDisplay, map, google) {
 console.log("DisplayRoute")  
 directionsService.route({
     origin: origin,
@@ -52,18 +46,19 @@ directionsService.route({
 });
 }
 
-function mapRun(map,google,ref,chefLongi,chefLati,userLoc,chefLoc,lati,longi){
+function mapRun(map,google,userLoc,chefLoc,){
   if (map){
     // execute when map object is rea dy 
     new google.maps.Marker({ position: userLoc, map });
     new google.maps.Marker({ position: chefLoc, map });
     var origin = chefLoc;
     var destination = userLoc;
+    console.log("inside map",userLoc)
     var travel_mode = "DRIVING";
     var directionsDisplay = new google.maps.DirectionsRenderer({'draggable': true});
     var directionsService = new google.maps.DirectionsService();
-    displayRoute(travel_mode, origin, destination, directionsService, directionsDisplay,ref, map, google);
-    calculateDistance(travel_mode, origin, destination,ref, map, google);
+    displayRoute(travel_mode, origin, destination, directionsService, directionsDisplay, map, google);
+    calculateDistance(travel_mode, origin, destination, google);
     // console.log(matrixResults());
   }
 }
@@ -72,37 +67,35 @@ function mapRun(map,google,ref,chefLongi,chefLati,userLoc,chefLoc,lati,longi){
 
 const Order = (props) => {
     const order_id=props.match.params.oid;
-    // const order_id="4547191d-200e-464c-a2f3-1bc3ea2773a6";
+    // const order_id="4547191d-200e-464c-a2f3-1bc3ea2773a6" wasd er;
     const[lati,setLati] = useState();
     const[longi,setLongi] = useState();
     const [order,setOrder] =  useState([]);
     const [dish,setDish] = useState([]);
-    const chefLati = 25.359080098326006;
-    const chefLongi = 82.9809349959941;
-    // const userLoc = {lat: lati, lng: longi};
+    // const userLoc = {lat: lati,  lng: v  longi}; 
     const chefLoc = {lat: lati, lng: longi};
-    var userLoc={}
+    var userLoc = {}
 
     const getLocationbyUserIDApiData = (user_id) => {
       fetch(`${process.env.REACT_APP_EC2_HOST}/getLocation?id=`+(user_id)).then((resp)=> resp.json()).then((d)=>{
         // setDish(d);
-        if(d?.data.lat){
-          userLoc ={lat:parseFloat(d?.data.lat), lng:parseFloat(d?.data.lan)};
-        }
+       
+       userLoc ={lat:parseFloat(d?.data.lat), lng:parseFloat(d?.data.lan)};
+       mapRun(map,google,userLoc,chefLoc);
         
-        console.log(`${process.env.REACT_APP_EC2_HOST}/getLocation?id=`+(user_id),userLoc)
+        console.log(`${process.env.REACT_APP_EC2_HOST}/getLocation?id=`+(user_id),userLoc,chefLoc)
       }).catch((err)=>{
         console.log(err);
       })
     }
-    
+    // setInterval(() => {mapRun(map,google,userLoc,chefLoc);}, 8000);
 
 
     
     const getDishbyIDApiData = (dish_id) => {
       fetch(`${process.env.REACT_APP_EC2_HOST}/getDishByID?id=`+(dish_id)).then((resp)=> resp.json()).then((d)=>{
         setDish(d);
-        // console.log(`${process.env.REACT_APP_EC2_HOST}/getDishByID?id=`+(dish_id),d)
+        // console.log(`${process.env.REACT_APP_EC2_HOST}/getDishByID?id=`+(dish_id),d)  
       }).catch((err)=>{
         console.log(err);
       })
@@ -131,28 +124,23 @@ const Order = (props) => {
     // console.log("map")
     // console.log(google); 
   // console.log(chefLati,chefLongi);
-  // console.log(lati,longi);
-
+  // console.log(lati,longi) ;
+  window.navigator.geolocation.getCurrentPosition(function(position){
+    // console.log("lati",position.coords.latitude);
+    // console.log("langi",position.coords.longitude);  
+    setLati(position.coords.latitude);
+    setLongi(position.coords.longitude);
+  });
     useEffect(() => {
-        window.navigator.geolocation.getCurrentPosition(function(position){
-          // console.log("lati",position.coords.latitude);
-          // console.log("langi",position.coords.longitude);  
-          setLati(position.coords.latitude);
-          setLongi(position.coords.longitude);
-        });
-        getOrderbyIDApiData();
-        mapRun(map,google,ref,chefLongi,chefLati,userLoc,chefLoc,lati,longi);
         
+        getOrderbyIDApiData();
+        
+
+    },[map,longi])
+
+    // const mapStyles = {width: "100 % ",};   
    
-    },[map])
-
-    // const mapStyles = {width: "100 % ",};  
-   
-
-
-
-
-    if (time != "Calculating time"){document.getElementById("time").innerHTML = time+" remaining"}
+    document.getElementById("time").innerHTML = time+ " remaining time" ;
 
     return (
         <div>
