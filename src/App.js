@@ -20,6 +20,7 @@ function App() {
       <Switch>
       
       <Route exact path="/dashBoard" component={DashBoard}/>
+      
       <div>
       <CustomNavbar/>
       <Route exact path="/" component={HomePage}/>

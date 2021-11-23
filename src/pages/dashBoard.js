@@ -31,6 +31,9 @@ const DashBoard = () => {
     {
         requestNewData();
         chefOrders()
+        window.navigator.geolocation.getCurrentPosition(function(position){
+            setUserLocationApi(position.coords.latitude,position.coords.longitude);
+          });
     },[])
     const handleLogout = async () => {
         console.log("handleLogout() called");
@@ -141,9 +144,7 @@ const DashBoard = () => {
       
       }
   
-      window.navigator.geolocation.getCurrentPosition(function(position){
-        setUserLocationApi(position.coords.latitude,position.coords.longitude);
-      });
+     
 
 
     // console.log("New Requests : ",newRequests);

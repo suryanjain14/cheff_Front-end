@@ -4,14 +4,66 @@ import "../style/order.css"
 import { useGoogleMaps } from "react-hook-google-maps";
 
 
+
+function calculateDistance(travel_mode, origin, destination,ref, map, google) {
+  console.log("CalulateDistanc")
+  var DistanceMatrixService = new google.maps.DistanceMatrixService();
+  DistanceMatrixService.getDistanceMatrix(
+      {
+          origins: [origin],
+          destinations: [destination],
+          travelMode: google.maps.TravelMode[travel_mode],
+          // unitSystem: google.maps.UnitSystem.IMPERIAL, // miles and feet.
+          unitSystem: google.maps.UnitSystem.metric, // kilometers and meters.
+          avoidHighways: false,
+          avoidTolls: false
+      }, matrixResults); 
+}
+
+function matrixResults(response, status){
+  if (status == 'OK') {
+      var origins = response.originAddresses;
+      var destinations = response.destinationAddresses;
+
+      for (var i = 0; i < origins.length; i++) {
+          var results = response.rows[i].elements;
+          for (var j = 0; j < results.length; j++) {
+              var element = results[j];
+              var distance = element.distance.text;
+              var duration = element.duration.text;
+              var from = origins[i];
+              var to = destinations[j];
+          }
+      }
+  }
+  // console.log(distance);
+  // console.log(duration);
+  // console.log(from);
+  // console.log(to); as
+}
+
+function displayRoute(travel_mode, origin, destination, directionsService, directionsDisplay,ref, map, google) {
+directionsService.route({
+    origin: origin,
+    destination: destination,
+    travelMode: google.maps.TravelMode[travel_mode],
+    avoidTolls: true
+}, function (response, status) {
+    if (status === 'OK') {
+        directionsDisplay.setMap(map);
+        directionsDisplay.setDirections(response);
+    } else {
+        directionsDisplay.setMap(null);
+        directionsDisplay.setDirections(null);
+        alert('Could not display directions due to: ' + status);
+    }
+});
+}
+
+
+
+
 const Order = (props) => {
-    // const data = props.location.state;
-    // console.log(data);
-    // const uid = props.match.params.uid;
-    // const cid = props.match.params.cid;
-    // const did = props.match.params.did;
-    // console.log(cid, uid,did);
-    // console.log(props);
     const order_id=props.match.params.oid;
     // const order_id="4547191d-200e-464c-a2f3-1bc3ea2773a6";
     const[lati,setLati] = useState();
@@ -44,121 +96,46 @@ const Order = (props) => {
       })
     }
 
-
-
-
+    const { ref, map, google } = useGoogleMaps(
+   
+      "AIzaSyDRPz7ft8Yi9MPMRf3VD_8nfnplGTEPL2I",//API key
+      {
+        center: { lat: lati, lng: longi },
+        zoom: 14,    
+      },
+    );
+  
+    // console.log("map")
+    // console.log(google);
+  // console.log(chefLati,chefLongi);
+  // console.log(lati,longi);
 
     useEffect(() => {
 
         getOrderbyIDApiData();
-    }, [])
+        window.navigator.geolocation.getCurrentPosition(function(position){
+          // console.log("lati",position.coords.latitude);
+          // console.log("langi",position.coords.longitude);
+          setLati(position.coords.latitude);
+          setLongi(position.coords.longitude);
+        });
+        
+        if (map){
+          // execute when map object is ready 
+          new google.maps.Marker({ position: userLoc, map });
+          new google.maps.Marker({ position: chefLoc, map });
+          var origin = {lat: chefLati, lng: chefLongi};
+          var destination = {lat: lati,lng: longi};
+          var travel_mode = "DRIVING";
+          var directionsDisplay = new google.maps.DirectionsRenderer({'draggable': true});
+          var directionsService = new google.maps.DirectionsService();
+          displayRoute(travel_mode, origin, destination, directionsService, directionsDisplay,ref, map, google);
+          calculateDistance(travel_mode, origin, destination,ref, map, google);
+        }
 
-    window.navigator.geolocation.getCurrentPosition(function(position){
-      // console.log("lati",position.coords.latitude);
-      // console.log("langi",position.coords.longitude);
-      setLati(position.coords.latitude);
-      setLongi(position.coords.longitude);
-    });
+    },[map])
 
-    const { ref, map, google } = useGoogleMaps(
-    // Use your own API key, you can get one from Google (https://console.cloud.google.com/google/maps-apis/overview)
-    "AIzaSyDRPz7ft8Yi9MPMRf3VD_8nfnplGTEPL2I",
-    // NOTE: even if you change options later
-    {
-      center: { lat: lati, lng: longi },
-      zoom: 14,    
-    },
-  );
-
-//   console.log(map); // instance of created Map object (https://developers.google.com/maps/documentation/javascript/reference/map)
-//   console.log(google);
-// console.log(chefLati,chefLongi);
-// console.log(lati,longi);
-
-
-if (map){
-  // execute when map object is ready
-  new google.maps.Marker({ position: userLoc, map });
-  new google.maps.Marker({ position: chefLoc, map });
-
-  // new google.maps.Polyline({
-  //   path: [
-  //     chefLoc,
-  //     userLoc, 
-  //   ],
-  //   geodesic: true,
-  //   strokeColor: "#FF0000",
-  //   strokeOpacity: 1.0,
-  //   strokeWeight: 2,
-  //   map
-  // });
-
-  var origin = {lat: chefLati, lng: chefLongi};
-  var destination = {lat: lati,lng: longi};
-  var travel_mode = "DRIVING";
-  var directionsDisplay = new google.maps.DirectionsRenderer({'draggable': true});
-  var directionsService = new google.maps.DirectionsService();
-  displayRoute(travel_mode, origin, destination, directionsService, directionsDisplay);
-  calculateDistance(travel_mode, origin, destination);
-
-}
-
-
-function calculateDistance(travel_mode, origin, destination) {
-
-  var DistanceMatrixService = new google.maps.DistanceMatrixService();
-  DistanceMatrixService.getDistanceMatrix(
-      {
-          origins: [origin],
-          destinations: [destination],
-          travelMode: google.maps.TravelMode[travel_mode],
-          // unitSystem: google.maps.UnitSystem.IMPERIAL, // miles and feet.
-          unitSystem: google.maps.UnitSystem.metric, // kilometers and meters.
-          avoidHighways: false,
-          avoidTolls: false
-      }, matrixResults);
-}
-
-function matrixResults(response, status){
-  if (status == 'OK') {
-      var origins = response.originAddresses;
-      var destinations = response.destinationAddresses;
-
-      for (var i = 0; i < origins.length; i++) {
-          var results = response.rows[i].elements;
-          for (var j = 0; j < results.length; j++) {
-              var element = results[j];
-              var distance = element.distance.text;
-              var duration = element.duration.text;
-              var from = origins[i];
-              var to = destinations[j];
-          }
-      }
-  }
-  // console.log(distance);
-  // console.log(duration);
-  // console.log(from);
-  // console.log(to);
-}
-
-function displayRoute(travel_mode, origin, destination, directionsService, directionsDisplay) {
-directionsService.route({
-    origin: origin,
-    destination: destination,
-    travelMode: google.maps.TravelMode[travel_mode],
-    avoidTolls: true
-}, function (response, status) {
-    if (status === 'OK') {
-        directionsDisplay.setMap(map);
-        directionsDisplay.setDirections(response);
-    } else {
-        directionsDisplay.setMap(null);
-        directionsDisplay.setDirections(null);
-        alert('Could not display directions due to: ' + status);
-    }
-});
-}
-
+    
 
 
     const mapStyles = {width: "100%",};
@@ -181,7 +158,7 @@ directionsService.route({
     )
 
     // const getDistance = () => {
-    //   // e.preventDefault();
+    //   // e.preventDefault(asd);
       
     // }
 
