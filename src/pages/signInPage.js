@@ -28,6 +28,7 @@ const handleSubmitForm = async (e) => {
       localStorage.setItem('access_token',tokens?.data?.access_token)
       localStorage.setItem('name',tokens?.data?.name);
       localStorage.setItem('id',tokens?.data?.id);
+      localStorage.setItem('role',tokens?.data?.role);
       let okToken = localStorage.getItem('access_token');
       // console.log("final test",okToken);
       let result = localStorage.getItem('name');
@@ -38,6 +39,7 @@ const handleSubmitForm = async (e) => {
       localStorage.setItem('access_token',tokens?.data?.access_token)
       localStorage.setItem('name',tokens?.data?.name);
       localStorage.setItem('id',tokens?.data?.id);
+      localStorage.setItem('role',tokens?.data?.role);
       let okToken = localStorage.getItem('access_token');
       // console.log("final test",okToken);
       let result = localStorage.getItem('name');

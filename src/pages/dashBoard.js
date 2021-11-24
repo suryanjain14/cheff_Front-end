@@ -35,6 +35,8 @@ const DashBoard = () => {
             setUserLocationApi(position.coords.latitude,position.coords.longitude);
           });
     },[])
+
+
     const handleLogout = async () => {
         console.log("handleLogout() called");
         const ID = localStorage.getItem('id');
@@ -208,9 +210,9 @@ const DashBoard = () => {
                         <div className="listSection">
                             <img className="image" src={item?.dishpicture} alt={item?.dishname} />
                             <h4 className="des" /*style={{textDecoration:"none"}}*/>{item?.dishname}</h4>
-                            <div className="btnGroup">
+                            {/* <div className="btnGroup">
                                 <Button id="status" type="submit" style={{float:'right'}}>{item?.status}</Button>
-                            </div>
+                            </div> */}
                         </div>
                     </Link>
                     <hr/>

@@ -89,7 +89,7 @@ const CheffList = (props) => {
 
         <Row className ="header-row" >
             <Col lg={3}>Name</Col>
-            <Col lg={3}>Time</Col>
+            <Col lg={3}>Contact Number</Col>
             <Col lg={3}>Price</Col>
             <Col lg={3}>Rating</Col>
         </Row>
