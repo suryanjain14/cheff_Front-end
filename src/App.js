@@ -12,6 +12,7 @@ import DashBoard from './pages/dashBoard';
 import SelectDishes from "./pages/selectDishes";
 import WaitingPage from './pages/waitingpage';
 import Order from './pages/order';
+import UserOrder from './pages/userOrder';
 
 function App() {
   return (
@@ -20,7 +21,6 @@ function App() {
       <Switch>
       
       <Route exact path="/dashBoard" component={DashBoard}/>
-      
       <div>
       <CustomNavbar/>
       <Route exact path="/" component={HomePage}/>
@@ -32,6 +32,7 @@ function App() {
         <Route exact path="/selectDishes" component={SelectDishes}/>
         <Route exact path="/waitingPage" component={WaitingPage}/>
         <Route exact path="/order/:oid" component={Order}/>
+        <Route exact path="/userorder/:oid" component={UserOrder}/>
         
 
 

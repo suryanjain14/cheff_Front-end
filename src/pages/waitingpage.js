@@ -12,7 +12,7 @@ const WaitingPage = (props) => {
   const getApiData = () => {
     fetch(`${process.env.REACT_APP_EC2_HOST}/getOrderDetailsByRequestId/?id=`+reqid).then((resp)=> resp.json()).then((d)=>{
       if(d.status === "success"){
-          history.push("/order/"+d.data[0].id);
+          history.push("/userorder/"+d.data[0].id);
           window.location.reload(); // this is very important please don't remove this line
       }
     }).catch((err)=>{
