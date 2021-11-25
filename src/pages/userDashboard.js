@@ -29,7 +29,7 @@ const UserDashBoard = () => {
 
     useEffect(()=>
     {
-        requestNewData();
+        // requestNewData();
         userOrders()
         // window.navigator.geolocation.getCurrentPosition(function(position){
         //     setUserLocationApi(position.coords.latitude,position.coords.longitude);

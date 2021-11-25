@@ -26,7 +26,7 @@ function App() {
     <BrowserRouter>
       <Switch>
       
-      <Route exact path="/userDashboard" component={component}/>
+      <Route exact path={dashboardpath} component={component}/>
       <div>
       <CustomNavbar/>
         <Route exact path="/" component={HomePage}/>
