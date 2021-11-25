@@ -13,22 +13,28 @@ import SelectDishes from "./pages/selectDishes";
 import WaitingPage from './pages/waitingpage';
 import Order from './pages/order';
 import UserOrder from './pages/userOrder';
+import UserDashBoard from "./pages/userDashboard";
 
+let role = localStorage.getItem("role");
+// console.log("role : ",role);
+let dashboardpath = (role==="Chef")?"/dashBoard":'/userDashboard';
+let component = (role==="Chef")?DashBoard:UserDashBoard;
+// console.log("Path : ",dashboardpath);
 function App() {
   return (
     <div className="App">
     <BrowserRouter>
       <Switch>
       
-      <Route exact path="/dashBoard" component={DashBoard}/>
+      <Route exact path="/userDashboard" component={component}/>
       <div>
       <CustomNavbar/>
-      <Route exact path="/" component={HomePage}/>
+        <Route exact path="/" component={HomePage}/>
         <Route exact path="/cheffList/:id" component={CheffList}/>
         <Route exact path="/orderConfirm/:uid/:cid/:did/:price/:cname" component={OrderConfirm}/>
         <Route exact path="/signUp" component={RegisterPage}/>
-        
-      <Route exact path="/login" component={SignInPage}/>
+    
+        <Route exact path="/login" component={SignInPage}/>
         <Route exact path="/selectDishes" component={SelectDishes}/>
         <Route exact path="/waitingPage" component={WaitingPage}/>
         <Route exact path="/order/:oid" component={Order}/>

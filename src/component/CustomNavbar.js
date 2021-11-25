@@ -10,6 +10,12 @@ const CustomNavbar = () => {
   // console.log("selected data is here",changeData);
   localStorage.setItem('city',changeData);
   let userName = localStorage.getItem('name');
+  let role = localStorage.getItem("role");
+  // console.log("role : ",role);
+  let dashboardpath = (role==="Chef")?"/dashBoard":'/userDashboard';
+  // console.log("Path : ",dashboardpath);
+
+  // console.log(`Username : ${userName.split(" ")[0]} ${userName.split(" ")[1].split("")[0].toUpperCase()}.`);
   let userToken = localStorage.getItem('access_token');
 
   // console.log("yes ok here",userToken);
@@ -36,10 +42,10 @@ const CustomNavbar = () => {
                 <option value="Delhi">Delhi</option>
               </Form.Select>
               <Nav.Link eventKey={2} as={Link} to={{
-                pathname:userToken === undefined || userToken === null ? "/login": "/dashBoard",
+                pathname:userToken === undefined || userToken === null ? "/login": dashboardpath,
                 state:{currentLocation: changeData}
               }}  >
-               {userToken === undefined || userToken === null  ? "Login": userName}
+               {userToken === undefined || userToken === null  ? "Login": `${userName.split(" ")[0]} ${userName.split(" ")[1].split("")[0].toUpperCase()}.` }
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>

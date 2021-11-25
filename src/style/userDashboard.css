@@ -1,0 +1,160 @@
+.dashBoardSection{
+    width: 100%;
+}
+.headerSection{
+    background-color: black;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 10px 50px 10px 50px;
+    justify-content: space-between !important;
+    text-align: end;
+}
+.buttons{
+    background-color:transparent;
+    border: 1px solid;
+    border-color: white;
+    color: white;
+    padding: 5px 40px 5px 40px;
+}
+.userName{
+    color: white;
+    margin-top: 10px;
+}
+.homes{
+    color: white !important;
+    margin-top: 10px;
+    margin-right: 50px;
+    text-decoration: none !important;
+}
+.tabBar{
+    display: flex;
+    justify-content: space-evenly;
+}
+.tabSection{
+    padding-top: 20px;
+}
+.tabs{
+    background-color: transparent;
+    border: 1px solid;
+    border-color: black;
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 5px 20px 5px 20px;
+}
+.tabs-selected {
+    
+    background-color:black;
+    color: white;
+    border: 1px solid;
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 8px 20px 8px 20px;
+}
+.panel{
+    margin-top:20px;
+}
+
+
+/*  */
+
+.cheffListItem{
+    width: 100%;
+    padding: 10px 15px 10px 15px;
+    position: absolute;
+    margin-top: 50px;
+    scrollbar-width: thin;
+    border-radius: 10px;
+}
+
+.cheffListItem::-webkit-scrollbar {
+    display: none;
+}
+
+.listSections{
+    display: flex;
+    /* justify-content: space-between; */
+    text-align: center;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px 0 10px 0;
+    align-items: center;
+    
+}
+.scrollSection{
+    max-height: 715px;
+    height: auto;
+    overflow-y: scroll !important;
+}
+.images{
+    height: 100px;
+    width: 100px;
+    margin-left: 10px !important;
+    border-radius: 10px;
+}
+.inputCheck{
+}
+
+#rejectButton{
+    width: 100px;
+    height: 40px;
+    background-color: red;
+    color: white;
+    margin: 15px;
+    border-radius: 10px;
+    border-style: none;
+    font-size: large;
+    /* align-items: flex-end;
+    text-align: center; */
+    float: right;
+}
+
+#acceptButton{
+    width: 100px;
+    height: 40px;
+    background-color: green;
+    color: white;
+    margin: 15px;
+    border-radius: 10px;
+    border-style: none;
+    font-size: large;
+    /* align-items: flex-end;
+    text-align: center; */
+    float: right;
+}
+.btnGroup{
+    text-align: end;
+    justify-content: end;
+}
+.listSectionn{
+    display: flex;
+    /* justify-content: space-between; */
+    text-align: center;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px 0 10px 0;
+    align-items: center;
+    justify-content: space-between;
+}
+.namePortion{
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
+
+#status{
+    /* text-align: end;
+    justify-content: end; */
+    width: 100px;
+    height: 40px;
+    background-color: yellowgreen;
+    color: white;
+    margin: 15px;
+    border-radius: 10px;
+    border-style: none;
+    font-size: large;
+    float: right;
+    /* align-items: flex-end; */
+}
