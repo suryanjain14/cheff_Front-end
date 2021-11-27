@@ -50,9 +50,8 @@
 }
 .listSection{
     display: flex;
-    /* justify-content: space-between; */
     text-align: center;
-    background-color: white;
+    background-color: rgb(240, 222, 222);
     padding: 10px;
     border-radius: 10px;
     margin: 10px 0 10px 0;

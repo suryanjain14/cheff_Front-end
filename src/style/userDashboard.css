@@ -127,7 +127,7 @@
     text-align: end;
     justify-content: end;
 }
-.listSectionn{
+.userDashboardListSection{
     display: flex;
     /* justify-content: space-between; */
     text-align: center;

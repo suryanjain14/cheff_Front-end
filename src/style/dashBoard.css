@@ -129,14 +129,13 @@
 }
 .listSectionn{
     display: flex;
-    /* justify-content: space-between; */
+    justify-content: space-between;
     text-align: center;
     background-color: white;
     padding: 10px;
     border-radius: 10px;
     margin: 10px 0 10px 0;
     align-items: center;
-    justify-content: space-between;
 }
 .namePortion{
     display: flex;
@@ -157,4 +156,15 @@
     font-size: large;
     float: right;
     /* align-items: flex-end; */
+}
+
+.acceptedListSection{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px 0 10px 0;
+    align-items: center;
 }

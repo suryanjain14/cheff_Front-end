@@ -207,12 +207,14 @@ const DashBoard = () => {
                     return (
                         <>
                     <Link to={{pathname:`/order/${item?.id}`}} style={{textDecoration:"none",color:"black"}}>
-                        <div className="listSection">
-                            <img className="image" src={item?.dishpicture} alt={item?.dishname} />
-                            <h4 className="des" /*style={{textDecoration:"none"}}*/>{item?.dishname}</h4>
-                            {/* <div className="btnGroup">
+                        <div className="acceptedListSection">
+                            <div className="d-flex align-items-center" >
+                                <img className="image" src={item?.dishpicture} alt={item?.dishname} />
+                                <h4 className="des" /*style={{textDecoration:"none"}}*/>{item?.dishname}</h4>
+                            </div>
+                            <div className="btnGroup">
                                 <Button id="status" type="submit" style={{float:'right'}}>{item?.status}</Button>
-                            </div> */}
+                            </div>
                         </div>
                     </Link>
                     <hr/>
