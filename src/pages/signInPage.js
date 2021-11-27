@@ -34,6 +34,7 @@ const handleSubmitForm = async (e) => {
       let result = localStorage.getItem('name');
       // console.log("final data is",result);
       history.push("/dashBoard");
+      window.location.reload()
     }
     else if(tokens.status === "success" && tokens.data.role === "Customer"){
       localStorage.setItem('access_token',tokens?.data?.access_token)
@@ -44,7 +45,8 @@ const handleSubmitForm = async (e) => {
       // console.log("final test",okToken);
       let result = localStorage.getItem('name');
       // console.log("final data is",result);
-      history.push("/");
+      history.push("/userDashBoard");
+      window.location.reload()
     }
     else{
       alert(tokens.message);

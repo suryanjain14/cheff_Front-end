@@ -32,20 +32,22 @@ const CustomNavbar = () => {
             <Nav className="me-auto">
             </Nav>
             <Nav>
-              <Form.Select
-                aria-label="Default select example"
-                className="locationSelect" onChange={(e)=>{setChangeData(e.target.value);} } value={changeData}
-              >
-                <option>Location</option>
-                <option value="Banglore">Banglore</option>
-                <option value="Mumbai">Mumbai</option>
-                <option value="Delhi">Delhi</option>
-              </Form.Select>
+              <div classname="location">
+                <Form.Select
+                  aria-label="Default select example"
+                  className="locationSelect" onChange={(e)=>{setChangeData(e.target.value);} } value={changeData}
+                >
+                  <option>Location</option>
+                  <option value="Banglore">Banglore</option>
+                  <option value="Mumbai">Mumbai</option>
+                  <option value="Delhi">Delhi</option>
+                </Form.Select>
+              </div>
               <Nav.Link eventKey={2} as={Link} to={{
                 pathname:userToken === undefined || userToken === null ? "/login": dashboardpath,
                 state:{currentLocation: changeData}
               }}  >
-               {userToken === undefined || userToken === null  ? "Login": `${userName.split(" ")[0]} ${userName.split(" ")[1].split("")[0].toUpperCase()}.` }
+               {userToken === undefined || userToken === null  ? "Login": userName }
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
