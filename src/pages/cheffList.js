@@ -1,49 +1,43 @@
-import React,{useState,useEffect} from "react";
-import { Row, Table, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import {Row, Table, Col} from "react-bootstrap";
+import {Link} from "react-router-dom";
 import "../style/cheffList.css";
-
 
 
 const CheffList = (props) => {
 
 
-  const [datas,setDatas] =  useState([]);
- 
-  const getApiData = () => {
-    // console.log("Props : ",props);
-    let city = localStorage.getItem('city');
-    // console.log("City : ",city);
-    // console.log(`${process.env.REACT_APP_EC2_HOST}/getChefByDishAndLocation?dishId=${props.match.params.id}&location=${city}`);
-    fetch(`${process.env.REACT_APP_EC2_HOST}/getChefByDishAndLocation?dishId=${props.match.params.id}&location=${city}`).then((resp)=> resp.json()).then((d)=>{
-      setDatas(d);
-      // console.log(d);
-    }).catch((err)=>{
-      console.log(err);
-    })
-  }
+    const [datas, setDatas] = useState([]);
+
+    const getApiData = () => {
+        // console.log("Props : ",props);
+        let city = localStorage.getItem('city');
+        // console.log("City : ",city);
+        // console.log(`${process.env.REACT_APP_EC2_HOST}/getChefByDishAndLocation?dishId=${props.match.params.id}&location=${city}`);
+        fetch(`${process.env.REACT_APP_EC2_HOST}/getChefByDishAndLocation?dishId=${props.match.params.id}&location=${city}`).then((resp) => resp.json()).then((d) => {
+            setDatas(d);
+            // console.log(d);
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
 
 
-  useEffect(() => {
-    
-    getApiData();
-  
-  }, [])
+    useEffect(() => {
 
+        getApiData();
 
-
-
+    }, [])
 
 
 // if (true){
-  
+
 //   var origin = {lat: chefLati, lng: chefLongi};
 //   var destination = {lat: lati,lng: longi};
 //   var travel_mode = "DRIVING";
 //   calculateDistance(travel_mode, origin, destination);
 
 // }
-  
 
 
 //   function calculateDistance(travel_mode, origin, destination) {
@@ -60,12 +54,12 @@ const CheffList = (props) => {
 //             avoidTolls: false
 //         }, matrixResults);
 //   }
-  
+
 //   function matrixResults(response, status){
 //     if (status == 'OK') {
 //         var origins = response.originAddresses;
 //         var destinations = response.destinationAddresses;
-  
+
 //         for (var i = 0; i < origins.length; i++) {
 //             var results = response.rows[i].elements;
 //             for (var j = 0; j < results.length; j++) {
@@ -84,34 +78,37 @@ const CheffList = (props) => {
 //   }
 
 
-  return (
-    <div id="/cheffList">
+    return (
+        <div id="/cheffList">
 
-        <Row className ="header-row" >
-            <Col lg={3}>Name</Col>
-            <Col lg={3}>Contact Number</Col>
-            <Col lg={3}>Price</Col>
-            <Col lg={3}>Rating</Col>
-        </Row>
+            <Row className="header-row">
+                <Col lg={3}>Name</Col>
+                <Col lg={3}>Contact Number</Col>
+                <Col lg={3}>Price</Col>
+                <Col lg={3}>Rating</Col>
+            </Row>
 
-        <Row className="content-row">
-        {
-             datas?.data?.map((item,index)=>{
-                 return  <Link to={{pathname:"/orderConfirm/"+localStorage.getItem("id")+"/"+item.id+"/"+props.match.params.id+"/"+item.charges+"/"+item.name,state:props.location.state}} style={{textDecoration:"none",color:"black"}}>
-                  
-                 <div className="section"> 
-                 <Col className="col" lg={3} key={index}>{item.name}</Col>
-                 <Col className="col" lg={3} key={index}>{item.mobile_number}</Col>
-                 <Col className="col" lg={3} key={index}>{item.charges}</Col>
-                 <Col className="col" lg={3} key={index}>{item.rating}</Col>
-                  </div>
-                 </Link>
-             })
-             
-             }
-        </Row>
+            <Row className="content-row">
+                {
+                    datas?.data?.map((item, index) => {
+                        return <Link to={{
+                            pathname: "/orderConfirm/" + localStorage.getItem("id") + "/" + item.id + "/" + props.match.params.id + "/" + item.charges + "/" + item.name,
+                            state: props.location.state
+                        }} style={{textDecoration: "none", color: "black"}}>
 
-         {/* {
+                            <div className="section">
+                                <Col className="col" lg={3} key={index}>{item.name}</Col>
+                                <Col className="col" lg={3} key={index}>{item.mobile_number}</Col>
+                                <Col className="col" lg={3} key={index}>{item.charges}</Col>
+                                <Col className="col" lg={3} key={index}>{item.rating}</Col>
+                            </div>
+                        </Link>
+                    })
+
+                }
+            </Row>
+
+            {/* {
              cheff.map((item,index)=>{
                  return  <Link to={{pathname:"/orderConfirm",state:props.location.state}} style={{textDecoration:"none",color:"black"}}>
                  <div className="section"> 
@@ -125,10 +122,9 @@ const CheffList = (props) => {
              
              }
         </Row> */}
-        
 
 
-      {/* <Table responsive striped bordered >
+            {/* <Table responsive striped bordered >
   <thead>
     <tr>
       <th>#</th>
@@ -164,10 +160,10 @@ const CheffList = (props) => {
         <td key={index}>Table cell {index}</td>
       ))}
     </tr> */}
-      {/* </tbody>
+            {/* </tbody>
 </Table>      */}
-    </div>
-  );
+        </div>
+    );
 };
 
 export default CheffList;

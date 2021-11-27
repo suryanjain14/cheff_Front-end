@@ -1,7 +1,7 @@
-.mainImage{
+.mainImage {
     width: 100%;
     /* height: 94vh; */
-   
+
     box-sizing: content-box;
     opacity: .5;
     background-repeat: no-repeat !important;
@@ -9,25 +9,28 @@
     background-attachment: fixed;
     background-size: cover;
 }
-.mainSection{
+
+.mainSection {
     /* margin-top: 100px; */
     width: 100%;
     /* height: 100%; */
-   
-    background-color: black ;
+
+    background-color: black;
 }
-.searchSection{
+
+.searchSection {
     width: 100% !important;
     bottom: 70%;
     left: 5%;
     position: absolute;
 }
-.cheffList{
+
+.cheffList {
     max-height: 600px;
     height: auto;
     width: 100%;
     padding: 10px 15px 10px 15px;
- 
+
     position: absolute;
     margin-top: 50px;
     scrollbar-width: thin;
@@ -35,20 +38,22 @@
     border-radius: 10px;
 }
 
-.scrollsections{
+.scrollsections {
     overflow-y: scroll;
     height: 500px;
 }
+
 .cheffList::-webkit-scrollbar {
     display: none;
 }
 
-.image{
+.image {
     height: 100px;
     width: 100px;
     border-radius: 10px;
 }
-.listSection{
+
+.listSection {
     display: flex;
     text-align: center;
     background-color: rgb(240, 222, 222);
@@ -56,9 +61,10 @@
     border-radius: 10px;
     margin: 10px 0 10px 0;
     align-items: center;
-    
+
 }
-.des{
+
+.des {
     text-decoration: none !important;
     color: black;
     /* text-align: left; */

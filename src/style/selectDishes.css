@@ -1,4 +1,4 @@
-.cheffListItem{
+.cheffListItem {
     width: 100%;
     padding: 10px 15px 10px 15px;
     position: absolute;
@@ -11,7 +11,7 @@
     display: none;
 }
 
-.listSections{
+.listSections {
     display: flex;
     /* justify-content: space-between; */
     text-align: center;
@@ -20,18 +20,21 @@
     border-radius: 10px;
     margin: 10px 0 10px 0;
     align-items: center;
-    
+
 }
-.scrollSection{
+
+.scrollSection {
     max-height: 715px;
     height: auto;
     overflow-y: scroll !important;
 }
-.images{
+
+.images {
     height: 100px;
     width: 100px;
     margin-left: 10px !important;
     border-radius: 10px;
 }
-.inputCheck{
+
+.inputCheck {
 }

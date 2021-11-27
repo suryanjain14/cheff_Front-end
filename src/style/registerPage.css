@@ -1,21 +1,23 @@
-.registerPage{
+.registerPage {
     width: 500px;
     margin-top: 100px;
     padding-top: 50px;
-        padding-left: 20px;
-        padding-right: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
     padding-bottom: 50px;
     background: rgb(61, 61, 87);
     text-align: start;
     border-radius: 12px;
 }
-.regis{
+
+.regis {
     text-align: center;
     align-items: center;
     color: white;
     margin-bottom: 20px;
 }
-.btn{
+
+.btn {
     background: tomato;
     width: 300px;
     align-items: center;
@@ -26,25 +28,29 @@
     margin-top: 30px;
 }
 
-.form{
+.form {
     padding-top: 10px;
     padding-bottom: 10px;
 }
-.forms{
+
+.forms {
     padding: 8px 5px 8px 5px;
     margin: 10px 0 10px 0 !important;
 
 }
-.input{
+
+.input {
     padding: 8px 5px 8px 5px;
     border: none;
 }
-.checkAccount{
+
+.checkAccount {
     text-align: center;
     color: white;
     padding-top: 20px;
-    text-decoration: none !important;   
+    text-decoration: none !important;
 }
-.locationSelect{
+
+.locationSelect {
     border: none;
 }

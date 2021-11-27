@@ -1,33 +1,38 @@
-.cheffitem{
+.cheffitem {
     text-align: center;
     align-items: center;
 }
-.links{
+
+.links {
     text-decoration: none !important;
     /* display: flex;
     justify-content: space-between; */
 }
-.header-row{
-    background-color:gainsboro;
+
+.header-row {
+    background-color: gainsboro;
     padding: 10px 0 10px 0;
 }
-.content-row{
+
+.content-row {
     padding: 10px 0 10px 0;
     /* margin: 10px 0 10px 0; */
 }
-.col{
-    margin-top:20px;
+
+.col {
+    margin-top: 20px;
     text-align: center;
     justify-content: start;
     align-items: center;
     padding-bottom: 15px;
     text-decoration: none !important;
 }
-.section{
-    margin-top:20px;
+
+.section {
+    margin-top: 20px;
     text-align: center;
     justify-content: start;
     align-items: center;
-    display: flex !important;   
-    background-color: ghostwhite; 
+    display: flex !important;
+    background-color: ghostwhite;
 }

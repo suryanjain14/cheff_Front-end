@@ -1,14 +1,15 @@
 .navbar-nav .nav-link {
     color: white !important;
-    margin: 0 5px 0 5px  !important;
-    width:auto;
+    margin: 0 5px 0 5px !important;
+    width: auto;
 }
+
 .navbar-nav .nav-link:hover {
     color: orange !important;
-      
+
 }
 
 .navbar-nav .location {
     color: white !important;
-    margin: 0 5px 0 5px  !important;
+    margin: 0 5px 0 5px !important;
 }
