@@ -3,8 +3,10 @@ import "../style/homePage.css"
 import {ReactSearchAutocomplete} from 'react-search-autocomplete'
 import {Link} from 'react-router-dom'
 import * as commanData from "./comman";
+import {useHistory, Redirect} from "react-router";
 
 const HomePage = () => {
+    const history = useHistory();
     localStorage.setItem('city', "Mumbai");
     const [datas, setDatas] = useState([]);
     const getApiData = () => {
@@ -36,12 +38,15 @@ const HomePage = () => {
 
     const handleOnHover = (result) => {
         // the item hovered
-        console.log(result)
+        // console.log(result)
     }
 
     const handleOnSelect = (item) => {
         // the item selected
-        console.log(item)
+        // console.log("/cheffList/" + item.id)
+        
+        return history.push("/cheffList/" + item.id);
+        
     }
 
     const handleOnFocus = () => {
@@ -64,6 +69,7 @@ const HomePage = () => {
                  src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80"
                  alt="image"/>
             <div className="searchSection container">
+                <div id="search">
                 <ReactSearchAutocomplete
                     items={datas.data}
                     onSearch={handleOnSearch}
@@ -75,8 +81,11 @@ const HomePage = () => {
                     formatResult={formatResult}
                 />
 
+                </div>
+                
+
                 <div className="cheffList">
-                    <h1 id="dishes">Dishes</h1>
+                    <h1 id="dishes">Cuisine</h1>
                     <div className="scrollsections">
                         {datas?.data?.map((item) => {
                             return (
