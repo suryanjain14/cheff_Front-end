@@ -6,14 +6,22 @@ import {useHistory} from "react-router";
 const WaitingPage = (props) => {
     const history = useHistory();
     const reqid = localStorage.getItem('RequestID')
+    let message ="Waiting for Chefs Confirmation"
 //   console.log(reqid , "request ye hai")
 
 
     const getApiData = () => {
         fetch(`${process.env.REACT_APP_EC2_HOST}/getOrderDetailsByRequestId/?id=` + reqid).then((resp) => resp.json()).then((d) => {
             if (d.status === "success") {
+                if(d.data[0].status === "Accepted"){
                 history.push("/userorder/" + d.data[0].id);
                 window.location.reload(); // this is very important please don't remove this line
+                }
+                else{
+                    message ="order declined by the chef"
+                    history.push("/" );
+                    window.location.reload(); // this is very important please don't remove this line
+                }
             }
         }).catch((err) => {
             console.log(err);
@@ -34,10 +42,7 @@ const WaitingPage = (props) => {
             <div className="searchSection container">
 
                 <div className="cheffList">
-
-
-                    <h1 id="dishes">Waiting for Chefs Confirmation</h1>
-
+                    <h1 id="dishes">{message}</h1>
                     <div className="scrollsections">
                         <div className="WaitingPageLoading">
                         </div>

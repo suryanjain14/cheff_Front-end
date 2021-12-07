@@ -74,7 +74,7 @@ const HomePage = () => {
                     items={datas.data}
                     onSearch={handleOnSearch}
                     onHover={handleOnHover}
-                    placeholder="Search your favorite dish here"
+                    placeholder="Search your favourite dish here"
                     onSelect={handleOnSelect}
                     onFocus={handleOnFocus}
                     autoFocus
