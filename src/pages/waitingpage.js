@@ -14,8 +14,8 @@ const WaitingPage = (props) => {
         fetch(`${process.env.REACT_APP_EC2_HOST}/getOrderDetailsByRequestId/?id=` + reqid).then((resp) => resp.json()).then((d) => {
             if (d.status === "success") {
                 if(d.data[0].status === "Accepted"){
-                history.push("/userorder/" + d.data[0].id);
-                window.location.reload(); // this is very important please don't remove this line
+                    history.push("/userorder/" + d.data[0].id);
+                    window.location.reload(); // this is very important please don't remove this line
                 }
                 else{
                     message ="order declined by the chef"
