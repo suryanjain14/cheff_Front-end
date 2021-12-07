@@ -8,11 +8,9 @@ import {Link} from 'react-router-dom';
 // import { Row, Table, Col, Button } from "react-bootstrap";
 
 
+
+
 const DashBoard = () => {
-
-
-//  setInterval(() => {window.location.reload();}, 8000);
-
 
     const user = getUser();
     const uid = localStorage.getItem('id')
@@ -22,6 +20,9 @@ const DashBoard = () => {
     const [newRequests, setNewRequests] = useState([]);
     const [pastOrders, setPastOrders] = useState([]);
     // const [orderID, setOrderID] = useState({});
+
+    //  setInterval(() => {requestNewData();}, 13000);
+    useEffect(() => {setInterval(() => {requestNewData();}, 8500)},[])
 
     useEffect(() => {
         requestNewData();
@@ -104,8 +105,11 @@ const DashBoard = () => {
                 "Content-Type": "application/json",
             }
         }).then((res) => res.json()).then((data) => {
-            // console.log("data : ",data);
+            console.log("Requestdata : ",data);
+            if (data.data.length!=0)
+            if ((newRequests.data!=data.data || newRequests.data.length==0) && data.data.length!=0){
             setNewRequests(data);
+        }
         })
     }
 
