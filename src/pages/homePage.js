@@ -85,7 +85,7 @@ const HomePage = () => {
                 
 
                 <div className="cheffList">
-                    <h1 id="dishes">Cuisine</h1>
+                    <h1 id="dishes">Dishes</h1>
                     <div className="scrollsections">
                         {datas?.data?.map((item) => {
                             return (
