@@ -24,10 +24,11 @@
     "react-scripts": "4.0.3",
     "react-search-autocomplete": "^5.4.2",
     "react-tabs": "^3.2.3",
+    "serve": "^13.0.2",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "PORT=80 react-scripts start",
+    "start": "PORT=4000 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
