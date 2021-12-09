@@ -3,11 +3,11 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ec2-user
+    destination: /home/ec2-user/Test
     
 hooks:
   BeforeInstall:
-    - location: beforeinstal.sh
+    - location: beforeinstall.sh
       timeout: 100 
       
    
