@@ -35,6 +35,7 @@ const SelectDishes = (props) => {
         const password = localStorage.getItem('tempp');
         const mobile_number = localStorage.getItem('tempmno')
         const location = localStorage.getItem('tempLoc')
+        const charges = localStorage.getItem("tempCharges");
 
         if (
             name.length !== 0 &&
@@ -52,7 +53,8 @@ const SelectDishes = (props) => {
                 password: password,
                 mobile_number: mobile_number,
                 role: "Chef",
-                location: location
+                location: location,
+                charges: charges
             });
 
             // console.log("now here is result again", tokens);
@@ -63,6 +65,7 @@ const SelectDishes = (props) => {
                 localStorage.setItem('role', tokens?.data?.role);
                 setUserSession(tokens.data.access_token, tokens.data);
                 history.push("/dashBoard");
+                window.location.reload();
             } else {
                 alert("Something went wrong please try again later");
             }
