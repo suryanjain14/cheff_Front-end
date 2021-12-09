@@ -73,7 +73,6 @@ const DashBoard = () => {
         window.location.reload();
         return
     }
-
     const handleOnReject = async (event) => {
         console.log("handleOnReject Called : ", event);
         let body = {
